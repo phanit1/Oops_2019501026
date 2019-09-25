@@ -41,11 +41,20 @@ public class Stats {
         //  Your code goes here....
         int size=arr.length;
         double sum=0;
+        double mean;
+        if(size==0)
+        {
+            mean=0;
+        }
+        else
+        {
         for ( int i=0;i<size;i++)
         {
             sum+=arr[i];    
         }
-        double mean=sum/size;
+           
+        mean=sum/size;
+       } 
         return mean;
     }
 
@@ -60,16 +69,12 @@ public class Stats {
      */
     public static double median(int[] arr) {
         //  Your code goes here...
-        double[] sortArr=Arrays.sort(arr);
-        int a=sortArr.length;
-        double median=0;
+        Arrays.sort(arr);
+        int a=arr.length;
         if(a%2!=0)
-            median=sortArr[a/2];
-        else
-            median=(sortArr[a/2]+sortArr[(a+1)/2])/2;
-        return median;
-    }
-
+            return (double)arr[a/2];
+        return (double)(arr[(a-1)/2]+arr[(a)/2])/2.0;
+        }
     /**
      * This method returns the mode of the array. If there is no mode, then it returns
      * 0 as the mode.
@@ -79,8 +84,24 @@ public class Stats {
      */
     public static int mode(int[] arr) {
         //  Your code goes here....
+        //double mode=(3*(median(arr)))-(2*(mean(arr)));
+        int mode = 0, count = 1;
+        int l=arr.length;
+        for (int i = 0; i < l; ++i) {
+            int c = 0;
+            for (int j = 0; j < l; ++j) {
+                if (arr[j] == arr[i])
+                ++c;
+            }
 
-        return arr;
+            if (c > count)
+            {
+                count = c;
+                mode = arr[i];
+            } 
+        }
+        
+        return mode;
     }
 
     /**
@@ -92,8 +113,10 @@ public class Stats {
      */
     public static double variance(int[] arr) {
         //  Your code goes here....
-
-        return 0.0;
+        double var = 0; 
+        for (int i = 0; i < arr.length; i++)  
+            var += (arr[i] - mean(arr)) *  (arr[i] - mean(arr));   
+        return (double)var / arr.length;
     }
 
     /**
@@ -104,7 +127,7 @@ public class Stats {
      */
     public static double standardDeviation(int[] arr) {
         //  Your code goes here....
-
-        return 0.0;
+        double sd=Math.sqrt(variance(arr));
+        return sd;
     }
 }
