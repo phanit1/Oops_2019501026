@@ -22,10 +22,14 @@ public class StringTimes {
         //  Your code goes here....
         //
         String w="";
-        for(int i=0;i<n;i++)
-        {
-            w=str+str;
-        }
+        // int a=str.length();
+        // if(str.indexOf(str)>=0 || str.indexOf(str)<=a-1)
+        // {
+         for(int i=0;i<n;i++)
+         {
+           w=str+str;
+         }
+        // } 
         return w;
     }
 }

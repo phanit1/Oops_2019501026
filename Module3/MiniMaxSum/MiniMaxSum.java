@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Given an array of elements, return the String that has two values separated
  * by commans. The first value is the sum of all the elements except minimum
@@ -22,8 +24,12 @@ public class MiniMaxSum {
      */
     public static int min(int[] arr) {
         //  Your code goes here...
+        int[] minArr=Arrays.sort(
+            
         
-        return -1;
+        arr);
+        int min=minArr[minArr.length-1];
+        return min;
     }
 
     /**
@@ -34,8 +40,9 @@ public class MiniMaxSum {
      */
     public static int max(int[] arr) {
         //  Your code goes here...
-        
-        return -1;
+        int[] maxArr=Arrays.sort(arr);
+        int max=maxArr[maxArr.length-1];
+        return max;
     }
 
     /**
@@ -46,8 +53,17 @@ public class MiniMaxSum {
      */
     public static int sum(int[] arr) {
         //  Your code goes here...
-        
-        return -1;
+        int sum=0;
+        if(arr.length==0)
+            return -1;
+        else
+        {
+            for(int i=0;i<=arr.length-1;i++)
+            {
+                sum=sum+arr[i];
+            }
+        }
+        return sum;
     }
     
     /**
@@ -60,7 +76,12 @@ public class MiniMaxSum {
      */
     public static String miniMaxSum(int[] arr) {
         //  Your code goes here...
-        
-        return "";
+        String minmax="";
+        int minsum=sum-min.min;
+        int maxsum=sum-max.max;
+        String minsumm=(String)minsum;
+        String maxsumm=(String)maxsum;
+        minmax=minsumm+"."+maxsumm;
+        return minmax;
     }
 }
