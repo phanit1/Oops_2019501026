@@ -60,8 +60,9 @@ public class Stats {
      */
     public static double median(int[] arr) {
         //  Your code goes here...
-        int[] sortArr=Arrays.sort(arr);
+        double[] sortArr=Arrays.sort(arr);
         int a=sortArr.length;
+        double median=0;
         if(a%2!=0)
             median=sortArr[a/2];
         else
@@ -79,7 +80,7 @@ public class Stats {
     public static int mode(int[] arr) {
         //  Your code goes here....
 
-        return Mode(arr);
+        return arr;
     }
 
     /**

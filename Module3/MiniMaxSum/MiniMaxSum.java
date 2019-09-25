@@ -24,11 +24,14 @@ public class MiniMaxSum {
      */
     public static int min(int[] arr) {
         //  Your code goes here...
-        int[] minArr=Arrays.sort(
-            
-        
-        arr);
-        int min=minArr[minArr.length-1];
+        int min=0;
+        if(arr.length!=0)
+        {
+        Arrays.sort(arr);
+        min=arr[0];
+        }
+        else
+            min=-1;
         return min;
     }
 
@@ -40,8 +43,14 @@ public class MiniMaxSum {
      */
     public static int max(int[] arr) {
         //  Your code goes here...
-        int[] maxArr=Arrays.sort(arr);
-        int max=maxArr[maxArr.length-1];
+        int max=0;
+        if(arr.length!=0)
+        {
+        Arrays.sort(arr);
+        max=arr[arr.length-1];
+        }
+        else
+            max=-1;
         return max;
     }
 
@@ -65,7 +74,6 @@ public class MiniMaxSum {
         }
         return sum;
     }
-    
     /**
      * Make use of the functions defined for finding the 
      * minimum element, maximum element and the sum of all the elements of teh 
@@ -77,11 +85,9 @@ public class MiniMaxSum {
     public static String miniMaxSum(int[] arr) {
         //  Your code goes here...
         String minmax="";
-        int minsum=sum-min.min;
-        int maxsum=sum-max.max;
-        String minsumm=(String)minsum;
-        String maxsumm=(String)maxsum;
-        minmax=minsumm+"."+maxsumm;
+        int minsum=sum(arr)-min(arr);
+        int maxsum=sum(arr)-max(arr);
+        minmax=(minsum)+","+(maxsum);
         return minmax;
     }
 }

@@ -23,12 +23,11 @@ public class Squares {
      */
     public static int[] squared(int[] nums) {
         //  Your code goes here.
-        int[] sq = {};
         for(int i=0;i<nums.length;i++)
         {
-           sq[i]=nums[i]*nums[i];
+           nums[i]=nums[i]*nums[i];
         }
      
-        return sq;
+        return nums;
     }
 }

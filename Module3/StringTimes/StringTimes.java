@@ -27,7 +27,7 @@ public class StringTimes {
         // {
          for(int i=0;i<n;i++)
          {
-           w=str+str;
+           w=w+str;
          }
         // } 
         return w;

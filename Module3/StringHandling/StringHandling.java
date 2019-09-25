@@ -17,11 +17,10 @@ public class StringHandling {
      */
     public static String[] lower(String[] arr) {
         //  your code goes here....
-        String lowerCase[]={};
         for(int i=0;i<=arr.length-1;i++)
         {
-            lowerCase[i]=arr[i].toLowerCase();
+            arr[i]=arr[i].toLowerCase();
         }
-        return lowerCase;
+        return arr;
     }
 }
