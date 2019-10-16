@@ -21,6 +21,7 @@ public class SocialNetwork {
     /**
      * Initializes the default values of the social network.
      */
+    //SocialNetwork network = new SocialNetwork();
     public SocialNetwork() {
         // TODO
         // Your code goes here
@@ -37,17 +38,36 @@ public class SocialNetwork {
         // TODO
         // Your code goes here
         String[] strr = str.split(";");
-        //System.out.println(strr.toString());
+        // System.out.println(strr. .toString());
+        // System.out.println(Arrays.toString(strr));
+        //String[] resLine = {};
+        //String[] scon = {};
+        for (String line : strr) {
+            // System.out.println(line);
+            String[] lineInfo = line.split(" is connected to ");
+            //System.out.println(lineInfo[0] + " : [" + lineInfo[1] + "]");
+            //resLine = lineInfo;
+            User u = new User(lineInfo[0], lineInfo[1]);
+            System.out.println(u.name);
+            //u.name= ;
+            // System.out.println(resLine[0]);
+            // System.out.println(resLine[1]);
+
+        }
+        //System.out.println(resLine[0]);
+            // System.out.println(resLine[1]);
+            
+            //u.connections = resLine[1];
+        //System.out.println(u.name);
         if (strr == null) {
             return;
         }
         else {
             
-            System.out.println(strr[0].toString());
+            //System.out.println(strr[0].toString());
         }
         return;
     }
-
     private boolean searchUser(User user) {
         for (int i = 0; i < size; i++) {
             if (user.equals(users[i])) {
@@ -86,7 +106,7 @@ public class SocialNetwork {
         users[size] = userA;
         size++;
     }
-
+    
     /**
      * This method takes two users (objects) as arguments and 
      * connects them on the network. userA and userB are 
@@ -104,7 +124,6 @@ public class SocialNetwork {
         // Your code goes here
         userA.connections[size] = userB;
     }
-
     /**
      * This method takes a user object as an argument that returns the 
      * connections of this user. Return null if the user is not in 
@@ -143,13 +162,15 @@ public class SocialNetwork {
         	}
         return null;
     }
-
+    
     /**
      * This reutrns the String version of the social network.
      * 
      * @return the String version of the network, return an empty string
      * if there are no users in the network.
      */
+    // User u = new User();
+    // u.addUser(lineInfo[0]);
     public String toString() {
         if (this.size == 0) {
             return "";

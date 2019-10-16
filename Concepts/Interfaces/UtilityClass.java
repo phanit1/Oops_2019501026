@@ -61,7 +61,7 @@ interface RandomGuy extends Cricketer {
     boolean canSmoke();
     boolean canDrink();
 }
-public class Person implements RandomGuy {
+final static class Person implements RandomGuy {
     public boolean canThink() {
         return true;
     }
@@ -87,7 +87,7 @@ public class Person implements RandomGuy {
         return true;
     }
     final class UtilityClass {
-        public static void main(String[] args) {
+        public static void main (String[] args) {
             Person p = new Person();
             System.out.println(p.canLearn());
             System.out.println(p.canBat());

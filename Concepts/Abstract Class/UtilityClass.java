@@ -3,9 +3,9 @@ abstract class Shape {
     Shape(String name) {
         this.name = name;
     }
-    public String definition() {
-        return "I belong to a shape, I am inherinting class Shape";
-    }
+    // public String definition() {
+    //     return "I belong to a shape, I am inherinting class Shape";
+    // }
     abstract String getAreaFormula();
     abstract double getArea();
     abstract int getNoOfSides();
@@ -77,6 +77,6 @@ final class UtilityClass {
         Rectangle rect = new Rectangle (4,7,"Rectangle");
         System.out.println("Area of Rectangle:"+rect.getArea());
         System.out.println("Sides:"+rect.getNoOfSides());
-        
+      
     }
 }

@@ -11,12 +11,16 @@ User (String n,String c)
     this.noOfConnections = c;
     this.connections = new User[20];
 }
+User u = new User();
+public User() {
 
+}
 public String toString(String[] s) {
     // String f = "";
     // for (int i = 0; i < s.length(); i++) {
     //     f = f + " " + connections[i].name;
     // }
+    
     return this.name + "is connected to " ;
 }
 public String getUserName() {

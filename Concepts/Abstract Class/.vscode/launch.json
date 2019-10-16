@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - UtilityClass",
+            "request": "launch",
+            "mainClass": "Shape.UtilityClass",
+            "projectName": "Abstract Class_1c859f0c"
+        }
+    ]
+}
