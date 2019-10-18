@@ -90,7 +90,6 @@ public abstract class AbstractList implements ListInterface  {
         list = new int[10];
         size = 0;
         capacity = 10;
-        
     }
     
     /*
@@ -124,11 +123,13 @@ public abstract class AbstractList implements ListInterface  {
      * 
      * The method returns void (nothing)
      */
-    public abstract void add(int item);
+    public void add(int item) {
         //Inserts the specified element at the end of the list.
-        // TODO
-        // Your code goes here.
-
+        if (size == list.length) {
+            resize();
+        }
+        list[size++] = item;
+    }
 
     /**
      * Given an index and an item, adds this item at a particular index.
@@ -151,11 +152,30 @@ public abstract class AbstractList implements ListInterface  {
      * Output: [5,2,-2,3,1,6,-1]
      * 
      * Think of on which object this method can be called. List / OrderedList and etc.
+     * This method throws an exception IndexOutOfBoundsException with a message 
+     * if index < 0 or index > size with a message "Invalid index to add element"
      */
-    public abstract void add(int index, int item);
+    public void add(int index, int item) throws InvalidIndexException {
+        if(OrderedList.class.isInstance(this)) {
+            throw new UnsupportedOperationException("Can't call this method on OrderedList");
+        }
         // TODO
-        // Your code goes here.
-    
+        // your code goes here
+
+        try{
+            
+            for(int i = size; i > index; i--) {
+                list[i] = list[i - 1];
+            }
+            list[index] = item;
+            size++;
+            if(size == capacity) {
+                resize();
+            }
+        }catch(Exception e) {
+            System.out.println("Invalid index to add element");
+        }
+    }
 
     /**
      * Appends all of the elements in the specified list to the end of this list, or
@@ -164,13 +184,16 @@ public abstract class AbstractList implements ListInterface  {
      * 
      * @param lst list containing elements to be added to this list.
      */
-    public void addAll(List lst) {
+    public void addAll(List lst)  throws InvalidIndexException {
         // TODO
-        // Your code goes here.
-        for(int i = 0; i < lst.size(); i++) {
-            add(lst.list[i]);
+        // your code goes here
+        try {
+            for(int i = 0; i < lst.size(); i++) {
+                add(lst.list[i]);
+            }
+        }catch(Exception e) {
+            // throw e;
         }
-        
     }
 
     /**
@@ -180,9 +203,13 @@ public abstract class AbstractList implements ListInterface  {
      */
     public void addAll(int[] arr ){
         // TODO
-        // Your code goes here.
-        for(int i = 0; i < arr.length; i++) {
-            add(arr[i]);
+        // your code goes here
+        try{
+            for(int i = 0; i < arr.length; i++) {
+                add(arr[i]);
+            }
+        }catch(Exception e) {
+            System.out.println("I cant add int[]");
         }
     }
 
@@ -195,20 +222,16 @@ public abstract class AbstractList implements ListInterface  {
      */
     public int size() {
         // replace the code below to implement the size method
-        // TODO
-        // Your code goes here.
-        return this.size;
+        return size;
     }
 
     /**
      * Resizes the array by doubling the space.
      */
     public void resize() {
-        // TODO
-        // Your code goes here.
-        this.list = java.util.Arrays.copyOf(list, capacity * 2);
+        // assert capacity > n;
+        list = Arrays.copyOf(list, capacity * 2);
         this.capacity = capacity * 2;
-        
     }
 
     /*
@@ -229,22 +252,37 @@ public abstract class AbstractList implements ListInterface  {
      * the items, that are to the right of the removed item, to the left
      * So, the new listay looks like this.
      * listay = [1,3,0,0,0,0,0,0,0,0]
+     * 
+     * If the index is not in the range of 0 to size-1, then throw an 
+     * exception called InvalidIndexException with a message
+     * "Invalid index to remove eleemnt" which is a user defined execption
+     * 
      * The method returns void (nothing)
+     * 
+     * This method throws an exception InvalidIndexException 
+     * if index is invalid to remove an element 
+     * with a message "Invalid index to remove eleemnt"
      */
-    public void remove(int index) {
+    public void remove(int index) throws InvalidIndexException {
         // write the logic for remove here.
         // Think about what to do to the size variable.
+
         // TODO
-        // Your code goes here.
-        if (index < size && index>0) {
-            int i = index;
-            for (int j = i + 1; j < size; j++) {
-                this.list[i] = this.list[j];
-                i++;
+        // your code goes here
+        
+        try{
+            if(index < size) {
+                int i = index;
+                for (int j = i + 1; j < size; j++) {
+                    this.list[i] = this.list[j];
+                    i++;
+                }
+                this.list[this.size] = 0;
+                this.size--;
             }
-            this.list[this.size] = 0;
-            this.size--;
-        }        
+        } catch(Exception e) {
+            System.out.println("Invalid index to remove eleemnt");
+        }
     }
 
     /*
@@ -257,15 +295,19 @@ public abstract class AbstractList implements ListInterface  {
      * in the list then that would mean the item doesn't exist.
      * How do we check if the position is greater than the 
      * number of items in the list? Would size variable be useful?
+     * 
+     * @throws InvalidIndexException with a message "Index is out of range"
      */
-    public int get(int index) {
-        // Replace the code below to write the code for get
+    public int get(int index) throws InvalidIndexException {
         // TODO
-        // Your code goes here.
-        if (index < this.size && index >= 0) { //validation
-            return this.list[index];
-        }        
-        return -1;
+        // your code goes here
+
+        try{
+            return list[index];
+        }catch(Exception e){
+            System.out.println("Index is out of range");
+            return -1;
+        }
     }
 
     /*
@@ -307,10 +349,10 @@ public abstract class AbstractList implements ListInterface  {
      */
     public boolean contains(int item) {
         // TODO
-        // Your code goes here.
+        // Your code goes here
         for (int i = 0; i < this.size; i++) {
-            if (this.list[i] == item) {
-                return true;
+        if (this.list[i] == item) {
+            return true;
             }
         }
         return false;
@@ -322,9 +364,9 @@ public abstract class AbstractList implements ListInterface  {
      */
     public int indexOf(int item) {
         // TODO
-        // Your code goes here.
-        for(int i = 0; i < size; i++) {
-            if(list[i] == item) {
+        // Your code goes here
+        for (int i = 0; i < this.size; i++) {
+            if (this.list[i] == item) {
                 return i;
             }
         }
@@ -341,12 +383,7 @@ public abstract class AbstractList implements ListInterface  {
      */
     public int lastIndexOf(int item) {
         // TODO
-        // Your code goes here.
-        // for(int i = size - 1; i >= 0; i--){
-        //     if(list[i] == item) {
-        //         return i;
-        //     }
-        // }
+        // Your code goes here
 
         int lastIndex = -1;
         
@@ -365,8 +402,7 @@ public abstract class AbstractList implements ListInterface  {
      */
     public int count(int item) {
         // TODO
-        // Your code goes here.
-    
+        // Your code goes here
         int count = 0;
         
         for(int i = 0; i < size; i++) {
@@ -385,21 +421,40 @@ public abstract class AbstractList implements ListInterface  {
      *  and vice-versa. The returned list supports all of the optional list operations.
      * @param fromIndex low endpoint (inclusive) of the subList
      * @param toIndex high endpoint (exclusive) of the subList
+     * 
+     * @throws InvalidIndexException if fromIndex is greater than or equal to toIndex
+     * with a message "fromIndex is greater than or equal to toIndex"
+     * @throws InvalidIndexException if fromIndex is less than 0 with a message
+     * "fromIndex is less than 0"
+     * @throws InvalidIndexException if toIndex >= size+1 with a message 
+     * "toIndex is greater than size"
      * @return a view of the specified range within this list
      */
-    public List subList(int fromIndex, int toIndex) {
+    public List subList(int fromIndex, int toIndex) throws InvalidIndexException {
         // TODO
         // Your code goes here.
-        List subList = new List(toIndex - fromIndex); // [0, 0]
         
-        int subListIndex = 0;
+        try{
+            List subList = new List(toIndex - fromIndex); // [0, 0]
+            int subListIndex = 0;
+            for(int i = fromIndex; i < toIndex; i++) {
+                subList.list[subListIndex] = list[i];
+                subList.size++;
+                subListIndex++;
+            }
+            return subList;
+        }catch(Exception e) {
+            if(fromIndex > toIndex) {
+                System.out.println("fromIndex is greater than or equal to toIndex");
+            }else if(fromIndex < 0) {
+                System.out.println("fromIndex is less than 0");
+            }else if(toIndex >= size + 1) {
+                System.out.println("toIndex is greater than size");
+            }else {
 
-        for(int i = fromIndex; i < toIndex; i++) {
-            subList.list[subListIndex] = list[i];
-            subList.size++;
-            subListIndex++;
+            }
+            return null;
         }
-        return subList;
     }
 
     /**
@@ -407,12 +462,17 @@ public abstract class AbstractList implements ListInterface  {
      * with the specified element.
      * @param index - index of the element to replace
      * @param element - element to be stored at the specified position
+     * @throws InvalidIndexException, if the index is out of range.
      * @return the element previously at the specified position
      */
-    public void set(int index, int item) {
+    public void set(int index, int item) throws InvalidIndexException {
         // TODO
-        // Your code goes here.
-
-        this.list[index] = item;
+        // Your code goes here to handle the exception.
+        try{
+            this.list[index] = item;
+        }catch(Exception e) {
+            // throw e;
+        }
+        
     }
 }

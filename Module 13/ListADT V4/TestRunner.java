@@ -8,6 +8,7 @@
  * Please don't modify the code.
  * @author Siva Sankar
  */
+
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
@@ -26,6 +27,7 @@ public class TestRunner {
          System.out.println("Please see the details below for the test cases that are failed");
          System.out.println("===============================");
          for (Failure failure : result.getFailures()) {
+            System.out.println("\nFull Error : " + failure.toString());
             int index = failure.getDescription().toString().indexOf("(");
             System.out.println("Test Case : " + failure.getDescription().toString().substring(8, index));
             int start = failure.getMessage().indexOf("<");
@@ -34,7 +36,6 @@ public class TestRunner {
             start = failure.getMessage().indexOf("<", start + 1);
             end = failure.getMessage().indexOf(">", end + 1);
             System.out.println("Your Output : " + failure.getMessage().substring(start+1, end));
-            System.out.println("\nFull Error : " + failure.getMessage());
             System.out.println("===============================");
          }
          System.out.println((result.getRunCount() - result.getFailureCount()) + " / " + result.getRunCount() + " Test Cases Passed....");
