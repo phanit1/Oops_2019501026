@@ -62,9 +62,8 @@ public class TestJUnit {
       try {
          lst.add(0, 7);
       } catch(Exception ex) {
-
+         assertEquals("4. List Object", "[7,1,2,7,3,4,5,6]", lst.toString());
       }
-      assertEquals("4. List Object", "[7,1,2,7,3,4,5,6]", lst.toString());
    }
 
    @Test
