@@ -11,11 +11,11 @@ public class BookYourShow {
             showCount++;        
     }
 
-    public void printShows() {
-        for(int i = 0; i <showCount; i++) {
-            System.out.println(shows[i].toString());
-        }
-    }
+    // public void printShows() {
+    //     for(int i = 0; i <showCount; i++) {
+    //         System.out.println(shows[i].toString());
+    //     }
+    // }
 
     public Show getAShow(String moviename, String datetime) {
         for (int i = 0; i < showCount; i++) {
