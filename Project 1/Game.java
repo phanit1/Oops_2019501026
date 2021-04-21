@@ -1,25 +1,33 @@
 public class Game {
 public void chooselevel() {
-    String level;
-    int levelNumber;
+    String level = "";
+    int noOfGuesses = 0;
+    int levelNumber = 0;
     switch(levelNumber) {
-        case 1: String = "Easy";
+        case 1: level = "Easy";
+                noOfGuesses = 10;
         break;
-        case 2: String = "Medium";
+        case 2: level = "Medium";
+                noOfGuesses = 15;
         break;
-        case 3: String = "Hard";
+        case 3: level = "Hard";
+                noOfGuesses = 25;
         break;
-        case 4: String = "Default Level by computer";
+        default: level = "Default Level by computer";
+                noOfGuesses = 20;
+        break;
     }
 }
 public void chooseMovieName() {
-
-}
-public void guessCharacters() {
-
+     
 }
 public void showAvailableLetters() {
+    String letters = "abcdefghijklmnopqrstuvwxyz";
 
+}
+public String guessCharacters() {
+    String guess = "";
+    return guess;
 }
 public void isWordCorrect() {
 
